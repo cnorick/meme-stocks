@@ -10,6 +10,10 @@ def index():
     return app.send_static_file('index.html')
 
 
+@app.route('/<path:path>')
+def send_js(path):
+    return app.send_static_file(path)
+
 
 # This is the endpoint that returns all of the memes from the database.
 @app.route('/api/memes', methods=['GET'])
