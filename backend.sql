@@ -67,3 +67,18 @@ insert into memes(memeName)
 values(@memeName);
 
 END
+
+
+
+
+CREATE PROCEDURE updateMemeStat
+@memeID int,
+@timestamp datetime2,
+@score int
+AS
+BEGIN
+
+insert into memeStats(memeID, timestamp, score)
+values(@memeID, @timestamp, @score)
+
+end
