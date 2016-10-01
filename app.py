@@ -1,5 +1,8 @@
-#!flask/bin/python
+#!webapi/bin/python
+
 from flask import Flask, jsonify
+import pyodbc
+
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -17,7 +20,7 @@ def send_js(path):
 
 # This is the endpoint that returns all of the memes from the database.
 @app.route('/api/memes', methods=['GET'])
-def get_tasks():
+def get_meme():
     # Once Jacob gets the database setup, this function will get data from it.
     # Right now, though, we'll just use fake data.
     memes = [
