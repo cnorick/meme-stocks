@@ -13,3 +13,14 @@ timestamp datetime2,
 score int,
 foreign key(memeID) references memes(memeID)
 );
+
+
+
+CREATE PROCEDURE getMemes
+AS
+BEGIN
+
+select *
+from memes
+
+END
