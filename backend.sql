@@ -37,6 +37,8 @@ BEGIN
 
 select *
 from memeStats
+inner join memes
+on memes.memeID = memeStats.memeID
 
 END
 
