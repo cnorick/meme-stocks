@@ -40,3 +40,17 @@ select *
 from memeStats
 
 END
+
+
+
+CREATE PROCEDURE getMemeStat
+@memeID int
+
+AS
+BEGIN
+
+select *
+from memeStats
+where memeID = @memeID
+
+END
