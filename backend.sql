@@ -2,7 +2,6 @@ CREATE TABLE Memes
 (
 memeID int not null PRIMARY KEY identity,
 memeName nvarchar(max),
-memePicture varbinary(max)
 );
 
 CREATE TABLE memeStats
@@ -58,12 +57,11 @@ END
 
 
 CREATE PROCEDURE addNewMeme
-@memeName nvarchar(max),
-@memePicture varbinary(max)
+@memeName nvarchar(max)
 AS
 BEGIN
 
-insert into memes(memeName,memePicture)
-values(@memeName,@memePicture);
+insert into memes(memeName)
+values(@memeName);
 
 END
