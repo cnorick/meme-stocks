@@ -24,3 +24,19 @@ select *
 from memes
 
 END
+
+
+
+
+
+
+
+
+CREATE PROCEDURE getAllMemeStats
+AS
+BEGIN
+
+select *
+from memeStats
+
+END
