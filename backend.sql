@@ -54,3 +54,16 @@ from memeStats
 where memeID = @memeID
 
 END
+
+
+
+CREATE PROCEDURE addNewMeme
+@memeName nvarchar(max),
+@memePicture varbinary(max)
+AS
+BEGIN
+
+insert into memes(memeName,memePicture)
+values(@memeName,@memePicture);
+
+END
