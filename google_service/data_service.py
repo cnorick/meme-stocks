@@ -10,6 +10,7 @@ meme_list = ["good guy greg", "grumpy cat", "bad luck brian", "business cat", "b
     "one does not simply", "futurama fry", "sad papaw", "what if i told you",
     "the most interesting man in the world"]
 
+#this function gets the number of google search results for the parameter string 'meme_name'
 def get_result_count(meme_name):
     service = build("customsearch", "v1", developerKey="AIzaSyDj_UD-dK3-4mTyOUeD2JUABDVLpUi2gho")
 
@@ -20,6 +21,8 @@ def get_result_count(meme_name):
 
     return result["searchInformation"]["totalResults"]
 
+#this function uses the product of the google search results count and the relative popularity
+#of the string observed from 2011 to 2016
 def get_score(meme_name):
     maxvalue = get_result_count(meme_name)
     google_username = "danqjones@gmail.com"
@@ -32,15 +35,13 @@ def get_score(meme_name):
     trend = pytrend.trend(trend_payload, return_type = 'dataframe')
     time.sleep(10)
     print(trend)
-    #for date in trend.index:
-        #print date
-        #print trend.at[date,meme_name]
     date = trend.index[-1]
     score = trend.at[date,meme_name] * int(maxvalue)
     score = score / float(100)
     print str(date) + " " + str(score)
     return score
 
+#this method finds the highest score for the current month
 def get_high_score():
     maximum = 0
     max_meme = ""
