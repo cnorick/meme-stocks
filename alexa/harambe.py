@@ -1,3 +1,6 @@
+import urllib
+from urllib import request
+
 from __future__ import print_function
 
 
@@ -64,6 +67,50 @@ def handle_session_end_request():
 
 def get_top_meme():
     return {"name": "harambe", "points": "420"}
+    
+def get_dankmeme ():
+    dank_index = 40000
+    url = "https://www.reddit.com/r/dankmemes/"
+    req = urllib.request.Request (url, headers = {'User-agent': 'Harambe'})
+    with urllib.request.urlopen (req) as response:
+        page = response.read ().decode ('utf-8')
+        
+        begining_index = (page.find ('<a class="title may-blank " data-event-action="title" href=', dank_index))
+        dank_index = begining_index
+        # print(page [begining_index + 100 : begining_index + 150])
+        begining_index = (page.find ('data-inbound-url', dank_index))
+        dank_index = begining_index
+        # print(page [begining_index : begining_index + 10])
+        begining_index = (page.find ('rel="" >', dank_index));
+        dank_index = begining_index
+        # print(page [begining_index : begining_index + 10])
+        begining_index = (page.find ('>', dank_index) + 1);
+        dank_index = begining_index
+        # print(page [begining_index : begining_index + 10])
+        
+        ending_index = (page.find ("<", dank_index))
+        
+        memeName = page [begining_index : ending_index]
+        return memeName
+        
+def get_dankscore ():
+    dank_index = 40000
+    url = "https://www.reddit.com/r/dankmemes/"
+    req = urllib.request.Request (url, headers = {'User-agent': 'Harambe'})
+    with urllib.request.urlopen (req) as response:
+        page = response.read ().decode ('utf-8')
+        
+        begining_index = (page.find ('<div class="score unvoted" title=', dank_index))
+        dank_index = begining_index
+        # print(page [begining_index : begining_index + 100])
+        begining_index = (page.find ('>', dank_index) + 1)
+        dank_index = begining_index
+        # print(page [begining_index: begining_index + 10])
+        
+        ending_index = (page.find ("<", dank_index))
+        
+        memeScore = page [begining_index : ending_index]
+        return memeScore
 
 def get_dankest_meme(intent, session):
     card_title = intent["name"]
@@ -72,7 +119,7 @@ def get_dankest_meme(intent, session):
     
     meme = get_top_meme()
     
-    speech_output = "Right now, " + meme["name"] + " is the dankest meme with " + meme["points"] + " points"
+    speech_output = "Right now, " + get_dankmeme() + " is the dankest meme with " + get_dankscore() + " points"
     reprompt_text = ""
     should_end_session = True
     
